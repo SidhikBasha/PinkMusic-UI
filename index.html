@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pink Music UI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,sans-serif;
+}
+
+body{
+  background:#090909;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:24px;
+  color:white;
+}
+
+/* APP */
+
+.app{
+  width:100%;
+  max-width:420px;
+
+  background:#111111;
+
+  border:1px solid rgba(255,255,255,0.06);
+
+  border-radius:36px;
+
+  overflow:hidden;
+
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* TOP */
+
+.top{
+  padding:24px 24px 10px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:24px;
+}
+
+.icon-btn{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#1a1a1a;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#ff4fa3;
+  font-size:18px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.icon-btn:hover{
+  background:#ff4fa3;
+  color:#111;
+}
+
+/* TITLE */
+
+.title{
+  text-align:center;
+}
+
+.title h1{
+  font-size:13px;
+  color:#999;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+.title p{
+  margin-top:5px;
+  font-size:24px;
+  font-weight:800;
+}
+
+/* ALBUM */
+
+.album{
+  width:100%;
+  aspect-ratio:1;
+  border-radius:30px;
+  background:linear-gradient(135deg,#ff4fa3,#ff86c8);
+  margin-top:20px;
+  box-shadow:0 25px 50px rgba(255,79,163,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  letter-spacing:2px;
+  transition:.35s;
+}
+
+.album:hover{
+  transform:scale(1.02);
+}
+
+/* INFO */
+
+.info{
+  text-align:center;
+  margin-top:26px;
+}
+
+.song{
+  font-size:28px;
+  font-weight:800;
+}
+
+.artist{
+  margin-top:8px;
+  color:#8b8b8b;
+  font-size:14px;
+}
+
+/* PROGRESS */
+
+.progress-area{
+  margin-top:30px;
+}
+
+.time{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-size:12px;
+  color:#777;
+}
+
+.progress{
+  width:100%;
+  height:7px;
+  border-radius:999px;
+  background:#1c1c1c;
+  overflow:hidden;
+}
+
+.progress-bar{
+  width:58%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ff4fa3,#ff8ccd);
+}
+
+/* CONTROLS */
+
+.controls{
+  margin-top:34px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+}
+
+.control-btn{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  background:#1a1a1a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.control-btn:hover{
+  background:#242424;
+  transform:translateY(-2px);
+}
+
+/* PLAY BUTTON FIXED HOVER + ACTIVE */
+
+.play-btn{
+  width:76px;
+  height:76px;
+  border-radius:24px;
+  background:linear-gradient(135deg,#ff4fa3,#ff8ccd);
+  color:white;
+  font-size:28px;
+  font-weight:800;
+  box-shadow:0 18px 35px rgba(255,79,163,0.3);
+  transition:.25s;
+}
+
+/* FIX: no black hover, keep pink style */
+
+.play-btn:hover{
+  transform:scale(1.05);
+  background:linear-gradient(135deg,#ff4fa3,#ff8ccd);
+  color:white;
+  box-shadow:0 22px 45px rgba(255,79,163,0.45);
+}
+
+/* ACTIVE (CLICK PRESS) */
+
+.play-btn:active{
+  transform:scale(.96);
+  background:linear-gradient(135deg,#ff2f92,#ff71c0);
+  box-shadow:0 10px 20px rgba(255,79,163,0.35);
+}
+
+/* PLAYLIST */
+
+.playlist{
+  margin-top:38px;
+  padding:0 24px 24px;
+}
+
+.playlist-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.playlist-top h2{
+  font-size:18px;
+}
+
+/* SEE ALL HOVER UNDERLINE */
+
+.playlist-top span{
+  color:#ff72bd;
+  font-size:13px;
+  cursor:pointer;
+  position:relative;
+}
+
+.playlist-top span::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-3px;
+  width:0%;
+  height:2px;
+  background:#ff72bd;
+  border-radius:2px;
+  transition:width .25s ease;
+}
+
+.playlist-top span:hover::after{
+  width:100%;
+}
+
+/* TRACK */
+
+.track{
+  background:#171717;
+  border-radius:22px;
+  padding:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+  border:1px solid transparent;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.track:hover{
+  border-color:rgba(255,79,163,0.3);
+  background:#1d1d1d;
+  transform:translateY(-2px);
+}
+
+.track.active{
+  background:rgba(255,79,163,0.08);
+  border-color:rgba(255,79,163,0.25);
+}
+
+.track-left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.mini{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#ff4fa3,#ff91d1);
+}
+
+.track-name{
+  font-size:15px;
+  font-weight:700;
+}
+
+.track small{
+  display:block;
+  margin-top:5px;
+  color:#7d7d7d;
+  font-size:12px;
+}
+
+.badge{
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(255,79,163,0.12);
+  color:#ff83c9;
+  font-size:11px;
+  font-weight:700;
+}
+
+/* NAV */
+
+.nav{
+  height:78px;
+  border-top:1px solid rgba(255,255,255,0.05);
+  background:#101010;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.nav-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  color:#707070;
+  font-size:11px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.nav-item span{
+  font-size:20px;
+}
+
+.nav-item:hover{
+  color:#ff72bd;
+}
+
+.nav-item.active{
+  color:#ff4fa3;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="top">
+
+    <div class="topbar">
+      <div class="icon-btn">☰</div>
+      <div class="icon-btn">♡</div>
+    </div>
+
+    <div class="title">
+      <h1>NOW PLAYING</h1>
+      <p>Pink Vibes</p>
+    </div>
+
+    <div class="album">ALBUM ART</div>
+
+    <div class="info">
+      <div class="song">Thalapathy Kacheri</div>
+      <div class="artist">Jana Nayagan • Tamil</div>
+    </div>
+
+    <div class="progress-area">
+      <div class="time">
+        <span>1:24</span>
+        <span>3:45</span>
+      </div>
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="control-btn">⏮</div>
+      <div class="control-btn play-btn">▶</div>
+      <div class="control-btn">⏭</div>
+    </div>
+
+  </div>
+
+  <div class="playlist">
+
+    <div class="playlist-top">
+      <h2>Playlist</h2>
+      <span>See All</span>
+    </div>
+
+    <div class="track active">
+      <div class="track-left">
+        <div class="mini"></div>
+        <div>
+          <div class="track-name">Thalapathy Kacheri</div>
+          <small>Jana Nayagan • Tamil</small>
+        </div>
+      </div>
+      <div class="badge">PLAYING</div>
+    </div>
+
+    <div class="track">
+      <div class="track-left">
+        <div class="mini"></div>
+        <div>
+          <div class="track-name">Pacha Manja</div>
+          <small>Tamil Padam • Tamil</small>
+        </div>
+      </div>
+      <div class="badge">HOT</div>
+    </div>
+
+    <div class="track">
+      <div class="track-left">
+        <div class="mini"></div>
+        <div>
+          <div class="track-name">Aadiney Irupen</div>
+          <small>Happy Raj • Tamil</small>
+        </div>
+      </div>
+      <div class="badge">TOP</div>
+    </div>
+
+  </div>
+
+  <div class="nav">
+    <div class="nav-item active"><span>🏠</span>Home</div>
+    <div class="nav-item"><span>🔍</span>Search</div>
+    <div class="nav-item"><span>❤️</span>Likes</div>
+    <div class="nav-item"><span>👤</span>Profile</div>
+  </div>
+
+</div>
+
+</body>
+</html>
